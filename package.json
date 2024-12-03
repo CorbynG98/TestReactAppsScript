@@ -6,7 +6,7 @@
   "scripts": {
     "start": "parcel",
     "build": "parcel build",
-    "glogin": "clasp login",
+    "glogin": "clasp login --creds .clasprc.json",
     "glogout": "clasp logout",
     "deploy": "./pre-deploy.sh && clasp push -f"
   },

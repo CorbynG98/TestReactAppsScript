@@ -8,7 +8,7 @@
     "build": "parcel build",
     "glogin": "clasp login",
     "glogout": "clasp logout",
-    "deploy": "./pre-deploy.sh && clasp push"
+    "deploy": "./pre-deploy.sh && clasp push -f"
   },
   "author": "",
   "license": "ISC",

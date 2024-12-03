@@ -36,16 +36,11 @@ jobs:
       - name: 'Create .clasprc.json file'
         run: |
           rm -rf .clasprc.json
-          touch .clasprc.json
-          echo "{ token": { >> .clasprc.json
-          echo "access_token": "${{ secrets.AS_TOKEN }}", >> .clasprc.json
-          echo "access_token": "${{ secrets.AS_REFRESHTOKEN }}", >> .clasprc.json
-          echo "access_token": "https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/service.management https://www.googleapis.com/auth/script.deployments https://www.googleapis.com/auth/logging.read https://www.googleapis.com/auth/script.webapp.deploy https://www.googleapis.com/auth/userinfo.profile openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/script.projects https://www.googleapis.com/auth/drive.metadata.readonly", >> .clasprc.json
-          echo "access_token": "Bearer", >> .clasprc.json
-          echo "access_token": "${{ secrets.AS_IDTOKEN }}", >> .clasprc.json
-          echo },  >> .clasprc.json
-          echo "isLocalCreds": false  >> .clasprc.json
-          echo }  >> .clasprc.json
+          rm -rf ~/.clasprc.json
+          touch .clasprc.json'
+          echo ${{ secrets.CLASPRC_JSON }}, >> .clasprc.json
+          touch ~/.clasprc.json'
+          echo ${{ secrets.CLASPRC_JSON }}, >> ~/.clasprc.json
 
       - name: Install Deps
         run: |

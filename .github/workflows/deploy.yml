@@ -33,18 +33,21 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - uses: daikikatsuragawa/clasp-action@v1.1.0
-        with:
-          accessToken: ${{ secrets.AS_TOKEN }}
-          idToken: ${{ secrets.AS_IDTOKEN }}
-          refreshToken: ${{ secrets.AS_REFRESHTOKEN }}
-          clientId: ${{ secrets.AS_CLIENTID }}
-          clientSecret: ${{ secrets.AS_CLIENTSECRET }}
-          scriptId: ${{ secrets.AS_SCRIPTID }}
-          command: 'push'
-
       - name: Install Deps
         run: npm ci --legacy-peer-deps
+
+      - name: Create clasp.json
+        env:
+          SCRIPT_ID: ${{ secrets.AS_SCRIPTID }}
+        run: echo '{"scriptId":"'$SCRIPT_ID'","rootDir":"dist"}' > .clasp.json
+
+      - name: Create folder structure
+        run: mkdir -p /home/runner
+
+      - name: Create clasprc.json
+        env:
+          CLASPRC: ${{ secrets.CLASPRC_JSON }}
+        run: echo "$CLASPRC" > /home/runner/.clasprc.json
 
       - name: Deploy
         run: npm run deploy

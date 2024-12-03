@@ -1,16 +1,24 @@
 export function App() {
+    const runGoogleFunction = (functionName: string) => {
+        return new Promise((resolve, reject) => {
+            // @ts-expect-error TS2304
+            google.script.run
+                .withSuccessHandler((response) => {
+                    resolve(response);
+                })
+                .withFailureHandler((error) => {
+                    reject(error);
+                    // Handle the error (e.g., show an error message to the user)
+                })[functionName];
+        })
+    }
+
     const handleClick = () => {
-        // @ts-expect-error TS2304
-        google.script.run
-            .withSuccessHandler((response) => {
-                console.log('Server response:', response);
-                // Update the UI based on the response
-            })
-            .withFailureHandler((error) => {
-                console.error('Error:', error);
-                // Handle the error (e.g., show an error message to the user)
-            })
-            .callServerFunction(); // Assuming this is the name of your server function
+        runGoogleFunction("callServerFunction").then(res => {
+            console.log(res)
+        }).catch(err => {
+            console.log("Error: " + err);
+        })
     };
 
     return (

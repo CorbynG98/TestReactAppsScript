@@ -33,24 +33,18 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Create .clasprc.json file
-        run: |
-          TEMP_FILE=$(mktemp)
-          echo "${{ secrets.CLASPRC_JSON }}" > "$TEMP_FILE"
-          cp "$TEMP_FILE" .clasprc.json
-          rm "$TEMP_FILE"
-      
-      - name: Install Clasp locally
-        run: npm install -D @google/clasp
-
-      - name: Authenticate Clasp
-        run: npm run glogin
+      - uses: daikikatsuragawa/clasp-action@v1.1.0
+        with:
+          accessToken: ${{ secrets.AS_TOKEN }}
+          idToken: ${{ secrets.AS_IDTOKEN }}
+          refreshToken: ${{ secrets.AS_REFRESHTOKEN }}
+          clientId: ${{ secrets.AS_CLIENTID }}
+          clientSecret: ${{ secrets.AS_CLIENTSECRET }}
+          scriptId: ${{ secrets.AS_SCRIPTID }}
+          command: 'push'
 
       - name: Install Deps
         run: npm ci --legacy-peer-deps
 
       - name: Deploy
         run: npm run deploy
-
-      - name: Clasp logout
-        run: npm run glogout

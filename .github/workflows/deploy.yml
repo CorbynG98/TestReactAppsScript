@@ -40,6 +40,9 @@ jobs:
           cp "$TEMP_FILE" .clasprc.json
           rm "$TEMP_FILE"
       
+      - name: Install Clasp locally
+        run: npm install -D @google/clasp
+
       - name: Authenticate Clasp
         run: |
           npm run glogin --creds .clasprc.json

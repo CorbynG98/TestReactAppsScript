@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router';
+import { useSearchParams } from 'react-router';
 // CORE PAGES =====================
 import HomePage from '../pages/HomePage';
 // UTILITY PAGES ===================
@@ -7,14 +7,20 @@ import TestPage2 from '../pages/main/TestPage2';
 import NotFoundPage from '../pages/utility/NotFoundPage';
 
 const RoutesComponent = () => {
+    const [searchParams] = useSearchParams();
+    const page = searchParams.get('page') || 'Home';
+
+    // Define a map for query params to components
+    const pageMap = {
+        Home: <HomePage />,
+        Test1: <TestPage1 />,
+        Test2: <TestPage2 />,
+    };
+
     return (
-        <Routes>
-            <Route path='/' element={<HomePage />} />
-            <Route path='/Home' element={<HomePage />} />
-            <Route path='/Test1' element={<TestPage1 />} />
-            <Route path='/Test2' element={<TestPage2 />} />
-            <Route path='*' element={<NotFoundPage />} />
-        </Routes>
+        <div>
+            {pageMap[page] || <NotFoundPage />} {/* Render based on the query param or fallback to NotFoundPage */}
+        </div>
     );
 };
 

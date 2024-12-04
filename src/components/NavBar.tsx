@@ -1,10 +1,18 @@
+import { useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link } from 'react-router';
+import { useNavigate } from 'react-router';
 
 function NavBar() {
+    const navigate = useNavigate();
+    const [isHovered, setIsHovered] = useState(false);
+    // Function to handle navigation based on query parameters
+    const handleNavigation = (page) => {
+        navigate(`?page=${page}`);
+    };
+
     return (
         <Navbar variant='dark' sticky='top' className='navSemiBackground' style={{ height: '6rem', padding: 0 }}>
             <Container style={{ paddingTop: '0.3rem', paddingBottom: '0.3rem' }}>
@@ -12,11 +20,14 @@ function NavBar() {
                     <Row style={{ display: 'flex', alignItems: 'center' }}>
                         <Col md='2'>
                             <Navbar.Brand
-                                href='/Home'
+                                onClick={() => handleNavigation('Home')}
+                                onMouseEnter={() => setIsHovered(true)}
+                                onMouseLeave={() => setIsHovered(false)}
                                 style={{
                                     display: 'flex',
                                     justifyContent: 'left',
                                     alignItems: 'center',
+                                    cursor: isHovered ? 'pointer' : 'default'
                                 }}>
                                 <img
                                     alt=''
@@ -32,10 +43,10 @@ function NavBar() {
                         <Col md='6'></Col>
                         <Col md='4'>
                             <div style={{ display: 'flex', columnGap: '1rem' }}>
-                                <Nav.Link style={{ color: 'white' }} as={Link} to='/Test1'>
+                                <Nav.Link style={{ color: 'white' }} onClick={() => handleNavigation('Test1')}>
                                     Test1
                                 </Nav.Link>
-                                <Nav.Link style={{ color: 'white' }} as={Link} to='/Test2'>
+                                <Nav.Link style={{ color: 'white' }} onClick={() => handleNavigation('Test2')}>
                                     Test2
                                 </Nav.Link>
                             </div>

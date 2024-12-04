@@ -1,4 +1,4 @@
-import { useSearchParams } from 'react-router';
+import { useSearchParams } from 'react-router-dom';
 // CORE PAGES =====================
 import HomePage from '../pages/HomePage';
 // UTILITY PAGES ===================

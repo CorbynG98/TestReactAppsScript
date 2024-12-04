@@ -1,4 +1,5 @@
-import { BrowserRouter } from "react-router";
+import { BrowserRouter } from "react-router-dom";
+import NavBar from "./components/NavBar";
 import RoutesComponent from "./components/RoutesComponent";
 
 export default function App() {
@@ -9,7 +10,7 @@ export default function App() {
                 background: 'radial-gradient(#262626, #000)',
             }}>
             <BrowserRouter>
-                {/* <NavBar /> */}
+                <NavBar />
                 <RoutesComponent />
             </BrowserRouter>
         </div>

@@ -9,6 +9,7 @@
 <br />
 <br />
 <br />
+
 # Key Take Aways
 - react-router higher than v6 does NOT WORK. I had to downgrade to latest v6 to get routing working
 - The code can be a full react application as far as I am aware, so long as the resulting build is a single html file. If you view the html file here, you will see what I did to make sure parcel builds into it correctly

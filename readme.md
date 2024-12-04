@@ -1,11 +1,11 @@
 # Notes
-- This repository was setup to do some testing for Google Apps Script
-    - We tested the capabilities of Clasp
-    - Clasp in pipelines
-    - Deploying web apps
-    - Deploying simple react web apps
-    - Deploying complex router based react web apps
-    - Single file react builds with parcel
+This repository was setup to do some testing for Google Apps Script
+- We tested the capabilities of Clasp
+- Clasp in pipelines
+- Deploying web apps
+- Deploying simple react web apps
+- Deploying complex router based react web apps
+- Single file react builds with parcel
 <br />
 <br />
 <br />
